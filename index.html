@@ -11,15 +11,6 @@
     
     <!-- ربط ملف التصميم -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- مكتبات Three.js للإضاءة والـ 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
 </head>
 <body>
 
@@ -33,12 +24,21 @@
         <button id="startBtn">🎁 اضغط لفتح الدعوة</button>
     </div>
 
-    <!-- حاوية مشهد الـ 3D (العلبة والخاتم) -->
+    <!-- مشهد العروسين وسط الورود البيضاء -->
     <div id="giftScene">
-        <div id="three-canvas-container"></div>
+        <div class="romantic-scene">
+            <div class="roses-frame"></div>
+            <div class="couple-animation-box">
+                <h2 class="scene-title">💍 لحظة لبس الخاتم المباركة 💍</h2>
+                <div class="couple-avatar-placeholder">
+                    <span>العريس يلبس العروس الخاتم</span>
+                </div>
+                <p class="scene-subtitle">حب، وفاء، وبداية حياة جديدة معاً...</p>
+            </div>
+        </div>
     </div>
 
-    <!-- الأبواب التي ستفتح بعد العلبة -->
+    <!-- الأبواب التي ستفتح بعد المشهد -->
     <div id="doors">
         <div class="door left"></div>
         <div class="door right"></div>
