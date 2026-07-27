@@ -9,9 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
     
-    <!-- مكتبات Three.js للمشهد ثلاثي الأبعاد -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <!-- ربط ملف التصميم -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,20 +24,26 @@
         <button id="startBtn">🎁 اضغط لفتح الدعوة</button>
     </div>
 
-    <!-- مشهد 3D للعروسين وخاتم الزفاف وسط الورود البيضاء -->
+    <!-- المشهد الكارتوني اللطيف والورود البيضاء والآية القرأنية -->
     <div id="giftScene">
         <div class="romantic-scene">
-            <div id="three-canvas-container"></div>
-            <div class="couple-animation-box-3d">
-                <h2 class="scene-title">💍 لحظة لبس الخاتم المباركة 💍</h2>
+            <!-- الورد الأبيض المتناثر في الخلفية -->
+            <div class="white-roses-bg" id="rosesContainer"></div>
+
+            <div class="cartoon-couple-box">
+                <!-- الآية القرآنية -->
+                <h3 class="scene-quran">﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا ﴾</h3>
+                
+                <!-- رسمة العروسين الكارتونية (تصميم لطيف ومعبر) -->
+                <div class="cartoon-illustration">
+                    <div class="couple-avatar groom-avatar">🤵🏻</div>
+                    <div class="heart-pulse">💖</div>
+                    <div class="couple-avatar bride-avatar">👰🏻‍♀️</div>
+                </div>
+
+                <h2 class="scene-title">💍 لحظات الفرح والبدايات السعيدة 💍</h2>
             </div>
         </div>
-    </div>
-
-    <!-- الأبواب التي ستفتح بعد المشهد -->
-    <div id="doors">
-        <div class="door left"></div>
-        <div class="door right"></div>
     </div>
 
     <!-- قسم معلومات الدعوة -->
