@@ -65,7 +65,7 @@ body {
     color: #000;
 }
 
-/* المشهد الأبيض الجديد (العروسان والورود) */
+/* المشهد الأبيض (العروسان والورود البيضاء) */
 #giftScene {
     display: none;
     height: 100vh;
@@ -94,7 +94,7 @@ body {
 .couple-animation-box {
     text-align: center;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border: 2px solid rgba(212, 175, 55, 0.4);
     border-radius: 30px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
@@ -111,18 +111,18 @@ body {
 }
 
 .couple-avatar-placeholder {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto 20px auto;
     border-radius: 50%;
-    background: linear-gradient(135deg, #fdfbf7 0%, #f3ebd8 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f3ebd8 100%);
     border: 3px solid #d4af37;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
-    font-size: 18px;
+    font-size: 19px;
     color: #7b5b00;
     font-weight: bold;
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
@@ -203,9 +203,9 @@ body {
 }
 
 .names span {
-    display: block;
+    display: inline-block;
     font-size: 40px;
-    margin: 10px;
+    margin: 0 15px;
 }
 
 .text {
