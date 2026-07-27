@@ -4,15 +4,15 @@ const startBtn = document.getElementById("startBtn");
 const invitation = document.getElementById("invitation");
 const rosesContainer = document.getElementById("rosesContainer");
 
-// توليد ورود بيضاء متحركة في الخلفية للمشهد الكارتوني
+// توليد ورود بيضاء متحركة وناعمة في الخلفية للمشهد الكارتوني
 function createWhiteRoses() {
     if (!rosesContainer) return;
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 30; i++) {
         const rose = document.createElement("div");
         rose.classList.add("floating-rose");
         
         // أحجام عشوائية لأشكال الورود/البتلات الناعمة
-        const size = Math.random() * 15 + 10;
+        const size = Math.random() * 18 + 10;
         rose.style.width = `${size}px`;
         rose.style.height = `${size}px`;
         
@@ -44,7 +44,7 @@ if (startBtn) {
         const audio = new Audio("assets/music/open.mp3");
         audio.play().catch(e => console.log("Audio autoplay restricted"));
 
-        // الانتقال من المشهد الكارتوني إلى تفاصيل الدعوة بالتلاشي (Fade Out/In) بدلاً من الأبواب
+        // الانتقال من المشهد الكارتوني إلى تفاصيل الدعوة بالتلاشي بعد عرض المشهد اللطيف
         setTimeout(() => {
             giftScene.style.opacity = "0"; // تلاشي المشهد الكارتوني
             setTimeout(() => {
