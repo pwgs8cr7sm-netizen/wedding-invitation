@@ -23,13 +23,39 @@ lid.style.transform = "rotate(-130deg)";
 
 },800);
 
-setTimeout(() => {
+setTimeout(()=>{
 
-ring.style.opacity = "1";
-ring.style.transform = "translateY(-120px) scale(1.3) rotate(720deg)";
+document.querySelector(".glow").style.opacity="1";
+
+document.querySelector(".glow").style.transform=
+"translateX(-50%) scale(1.2)";
+
+ring.style.opacity="1";
+
+ring.style.transform=
+"translateY(-140px) scale(1.45) rotate(720deg)";
+
+for(let i=0;i<60;i++){
+
+setTimeout(()=>{
+
+const p=document.createElement("div");
+
+p.className="gold-particle";
+
+p.style.left=(window.innerWidth/2+(Math.random()*220-110))+"px";
+
+p.style.top=(window.innerHeight/2+40)+"px";
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),5000);
+
+},i*45);
+
+}
 
 },1800);
-
 setTimeout(() => {
 
 giftScene.style.display="none";
