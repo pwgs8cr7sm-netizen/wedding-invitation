@@ -16,6 +16,7 @@ let clock = new THREE.Clock();
 
 function initThreeScene() {
     const container = document.getElementById("three-canvas-container");
+    if (!container) return;
     
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -39,23 +40,15 @@ function initThreeScene() {
     // مجموعة العلبة والخاتم
     const masterGroup = new THREE.Group();
 
-    // 1. قاعدة العلبة (Box Base)
+    // 1. قاعدة العلبة
     const boxGeo = new THREE.BoxGeometry(2, 1, 2);
-    const boxMat = new THREE.MeshStandardMaterial({
-        color: 0x990011,
-        roughness: 0.3,
-        metalness: 0.2
-    });
+    const boxMat = new THREE.MeshStandardMaterial({ color: 0x990011, roughness: 0.3, metalness: 0.2 });
     const boxBase = new THREE.Mesh(boxGeo, boxMat);
     masterGroup.add(boxBase);
 
-    // 2. غطاء العلبة (Lid)
+    // 2. غطاء العلبة
     const lidGeo = new THREE.BoxGeometry(2.05, 0.2, 2.05);
-    const lidMat = new THREE.MeshStandardMaterial({
-        color: 0xaa0015,
-        roughness: 0.3,
-        metalness: 0.2
-    });
+    const lidMat = new THREE.MeshStandardMaterial({ color: 0xaa0015, roughness: 0.3, metalness: 0.2 });
     lidMesh = new THREE.Mesh(lidGeo, lidMat);
     
     const lidGroup = new THREE.Group();
@@ -67,24 +60,14 @@ function initThreeScene() {
     // 3. الخاتم داخل العلبة
     ringGroup = new THREE.Group();
     const ringGeo = new THREE.TorusGeometry(0.5, 0.08, 16, 100);
-    const ringMat = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1.0,
-        roughness: 0.1
-    });
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 1.0, roughness: 0.1 });
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringGroup.add(ringMesh);
 
-    // فص الألماس المتوهج
+    // فص الألماس
     const diamondGeo = new THREE.OctahedronGeometry(0.18, 0);
     const diamondMat = new THREE.MeshPhysicalMaterial({
-        color: 0xffffff,
-        metalness: 0.1,
-        roughness: 0,
-        transmission: 0.9,
-        ior: 2.4,
-        transparent: true,
-        opacity: 0.95
+        color: 0xffffff, metalness: 0.1, roughness: 0, transmission: 0.9, ior: 2.4, transparent: true, opacity: 0.95
     });
     const diamondMesh = new THREE.Mesh(diamondGeo, diamondMat);
     diamondMesh.position.y = 0.5;
@@ -95,7 +78,7 @@ function initThreeScene() {
 
     scene.add(masterGroup);
 
-    // إعداد تأثير الـ Bloom بتوهج معتدل وأنيق
+    // تأثير التوهج
     const renderScene = new THREE.RenderPass(scene, camera);
     const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 0.85);
     
@@ -103,7 +86,6 @@ function initThreeScene() {
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
 
-    // حلقة التحديث المستمرة
     function animate() {
         requestAnimationFrame(animate);
 
@@ -127,54 +109,59 @@ function initThreeScene() {
     animate();
 }
 
-// تشغيل الأحداث عند الضغط على زر فتح الدعوة
-startBtn.onclick = () => {
-    loader.style.display = "none";
-    giftScene.style.display = "block";
-    
-    initThreeScene();
-    isAnimationStarted = true;
+// تشغيل الأحداث عند الضغط
+if (startBtn) {
+    startBtn.onclick = () => {
+        loader.style.display = "none";
+        giftScene.style.display = "block";
+        
+        initThreeScene();
+        isAnimationStarted = true;
 
-    // تشغيل الصوت
-    const audio = new Audio("assets/music/open.mp3");
-    audio.play().catch(e => console.log("Audio autoplay restricted"));
+        // تشغيل الصوت (إذا كان متوفراً)
+        const audio = new Audio("assets/music/open.mp3");
+        audio.play().catch(e => console.log("Audio autoplay restricted"));
 
-    // الانتقال للأبواب والموقع بعد انتهاء حركة العلبة والخاتم
-    setTimeout(() => {
-        giftScene.style.display = "none";
-        doors.style.display = "block";
-    }, 4500);
+        // انتقال الشاشات بتوقيت متناسق
+        setTimeout(() => {
+            giftScene.style.display = "none";
+            doors.style.display = "block";
+        }, 4500);
 
-    setTimeout(() => {
-        leftDoor.classList.add("openLeft");
-        rightDoor.classList.add("openRight");
-    }, 4800);
+        setTimeout(() => {
+            leftDoor.classList.add("openLeft");
+            rightDoor.classList.add("openRight");
+        }, 4800);
 
-    setTimeout(() => {
-        doors.style.display = "none";
-        invitation.style.display = "block";
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 6800);
-};
+        setTimeout(() => {
+            doors.style.display = "none";
+            invitation.style.display = "block";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 6800);
+    };
+}
 
-// =======================
-// Countdown
-// =======================
+// العداد التنازلي
 const target = new Date("September 19, 2026 16:00:00").getTime();
 
 setInterval(() => {
     const now = new Date().getTime();
     const distance = target - now;
 
+    if (distance < 0) return;
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if(document.getElementById("days")) {
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
-        document.getElementById("seconds").innerHTML = seconds;
-    }
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (daysEl) daysEl.innerHTML = days;
+    if (hoursEl) hoursEl.innerHTML = hours;
+    if (minutesEl) minutesEl.innerHTML = minutes;
+    if (secondsEl) secondsEl.innerHTML = seconds;
 }, 1000);
